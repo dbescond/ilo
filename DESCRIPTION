@@ -1,0 +1,17 @@
+Package: ilo
+Title: Tools for 'ILO' Open Data manipulation
+Version: 1.0
+Date: 2017-05-15
+Authors@R: person("Bescond", "David", email = "bescond@ilo.org", role = c("aut", "cre"))
+BugReports: https://github.com/dbescond/ilo/issues
+Description: Tools to download data from 'ILO' Statistics Department Database
+    http://www.ilo.org/ilostat/ together with search and manipulation utilities.
+License: MIT + file LICENSE
+    Depends:
+    R (>= 3.3)
+LazyData: true
+URL: https://github.com/dbescond/ilo
+VignetteBuilder: knitr
+NeedsCompilation: no
+Repository: CRAN
+RoxygenNote: 6.0.1

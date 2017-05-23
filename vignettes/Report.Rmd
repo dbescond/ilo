@@ -1,0 +1,25 @@
+---
+title: " Report"
+author: "David Bescond"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+Indicator
+===========
+
+get summary of indicator by mode (COLlecte, CALlculate, Total)
+```{r, eval=FALSE}
+
+get_ilo(collection = 'YI', info) %>% count(indicator, mode = substr(info,5,7)) %>% spread(mode, n) %>% ungroup() %>%mutate(TOT = rowSums(.[2:3], na.rm = TRUE))
+
+```
+
+
+
+
