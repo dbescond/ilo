@@ -44,7 +44,7 @@ compare_ilo <- function(df, ...	){
 invisible(gc(reset = TRUE))
 
 
-.dots  = lazyeval::lazy_dots(collection, ref_area, source.type, indicator)
+.dots  = lazyeval::lazy_dots(...)
 
 variable <- sapply(.dots, function(x) {ifelse(is.null(as.character(x$expr)), NULL ,paste0(as.character(x$expr), '/'))})
 rm(.dots)
@@ -92,27 +92,27 @@ rev <- anti_join(df,check, by = c("collection", "ref_area", "source", "indicator
 df <- df %>% switch_ilo(version, keep)
 check <- check %>% 	select(collection, ref_area, source, indicator, sex, classif1, classif2, time) %>% 
 					switch_ilo(version) %>% 
-					distinct(collection, ref_area, source, indicator, sex_vs, classif1_vs, classif2_vs, time) %>% 
+					distinct(collection, ref_area, source, indicator, sex_version, classif1_version, classif2_version, time) %>% 
 					mutate(REV = 1)
 
 rev <- rev %>% 	select(collection, ref_area, source, indicator, sex, classif1, classif2, time) %>% 
-			switch_ilo(version) %>% distinct(collection, ref_area, source, indicator, sex_vs, classif1_vs, classif2_vs, time) %>% 
+			switch_ilo(version) %>% distinct(collection, ref_area, source, indicator, sex_version, classif1_version, classif2_version, time) %>% 
 			mutate(keep = 1)
 
-REV <- df %>% left_join(rev, by = c("collection", "ref_area", "source", "indicator", "sex_vs", "classif1_vs", "classif2_vs", "time")) %>% 
+REV <- df %>% left_join(rev, by = c("collection", "ref_area", "source", "indicator", "sex_version", "classif1_version", "classif2_version", "time")) %>% 
 				filter(keep == 1) %>% 
 				select(-keep) %>% 
-				left_join(check, by = c("collection", "ref_area", "source", "indicator", "sex_vs", "classif1_vs", "classif2_vs", "time"))
+				left_join(check, by = c("collection", "ref_area", "source", "indicator", "sex_version", "classif1_version", "classif2_version", "time"))
 
-if(nrow(REV %>% filter(REV == 1)) > 0) {write_csv(REV %>% filter(REV == 1) %>% select(-REV, -dplyr:::contains('_vs')), path = paste0(getwd(), '/Output/REV_',str_sub(getwd(), str_locate(getwd(), 'DATA/')[1,2] + 1, -1),'.csv'), na = ''); UPDATE <- 1}
-if(nrow(REV %>% filter(!REV == 1)) > 0) {write_csv(REV %>% filter(!REV == 1) %>% select(-REV, -dplyr:::contains('_vs')), path = paste0(getwd(), '/Output/NEW_',str_sub(getwd(), str_locate(getwd(), 'DATA/')[1,2] + 1, -1),'.csv'), na = ''); UPDATE <- 1}
+if(nrow(REV %>% filter(REV == 1)) > 0) {write_csv(REV %>% filter(REV == 1) %>% select(-REV, -dplyr:::contains('_version')), path = paste0(getwd(), '/output/REV_',last(str_split(getwd(), '/', simplify = TRUE)[-1]),'.csv'), na = ''); UPDATE <- 1}
+if(nrow(REV %>% filter(!REV == 1)) > 0) {write_csv(REV %>% filter(!REV == 1) %>% select(-REV, -dplyr:::contains('_version')), path = paste0(getwd(), '/output/NEW_',last(str_split(getwd(), '/', simplify = TRUE)[-1]),'.csv'), na = ''); UPDATE <- 1}
 
 				
 df <- df %>% 
 			select(collection, ref_area, source, indicator, sex, classif1, classif2, time) %>% 
-			switch_ilo(version) %>% distinct(collection, ref_area, source, indicator, sex_vs, classif1_vs, classif2_vs, time) 
+			switch_ilo(version) %>% distinct(collection, ref_area, source, indicator, sex_version, classif1_version, classif2_version, time) 
 				
-DEL <- anti_join(check %>% select(-REV), df, by = c("collection", "ref_area", "source", "indicator", "sex_vs", "classif1_vs", "classif2_vs", "time"))
+DEL <- anti_join(check %>% select(-REV), df, by = c("collection", "ref_area", "source", "indicator", "sex_version", "classif1_version", "classif2_version", "time"))
 if(nrow(DEL) > 0) {write_csv(DEL, path = paste0(getwd(), '/output/DEL_',str_sub(getwd(), str_locate(getwd(), 'DATA/')[1,2] + 1, -1),'.csv'), na = ''); UPDATE <- 1}
 
 rm(REV, DEL)

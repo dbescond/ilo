@@ -102,7 +102,7 @@ invisible(gc(reset = TRUE))
 	info = NULL
 	web <- NULL
 	set <- list()
-	.dots  = lazyeval::lazy_dots(...)#lazyeval::lazy_dots(...)
+	.dots  = lazyeval::lazy_dots(...)
 
 	set$para <- .dots[!names(.dots)%in%'']
 	if(length(set$para)>0){

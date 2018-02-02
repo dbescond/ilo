@@ -60,6 +60,11 @@ if(str_detect(variable, '/version/')){
 
 	ilo:::init_ilo(-cl)
 	ref_config <- ilo$code$cl_col_ind_clv %>% filter(collection %in% unique(df$collection), indicator %in% unique(df$indicator))
+	
+if(str_detect(variable, '/xQ/')){	
+# add segmentation collected, xQ, dissem
+
+}	
 	test_version <- ref_config %>% mutate(TEST = paste0(indicator, "/", classif_vs)) %>% select(TEST) %>% distinct(TEST) %>% t %>% c  
 	test_version <-c(test_version, paste(ref_config$indicator, "NA", sep = "/"))
 

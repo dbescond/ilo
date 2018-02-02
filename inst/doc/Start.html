@@ -12,7 +12,7 @@
 
 <meta name="author" content="David Bescond" />
 
-<meta name="date" content="2017-05-15" />
+<meta name="date" content="2017-07-05" />
 
 <title>Start with ilo package</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Start with ilo package</h1>
 <h4 class="author"><em>David Bescond</em></h4>
-<h4 class="date"><em>2017-05-15</em></h4>
+<h4 class="date"><em>2017-07-05</em></h4>
 
 
 
@@ -129,9 +129,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">close_ilo</span>()</code></pre></div>
 <p>By default Database are store under your ‘…/’user’/AppData/Local/ILO/’, lazyLoad rdb files are there.</p>
 <p>Then data are store by collection and freqency:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ilo$segment </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ilo<span class="op">$</span>segment </code></pre></div>
 <p>get codelist availability</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(ilo$code) %&gt;%<span class="st"> </span>sort</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(ilo<span class="op">$</span>code) <span class="op">%&gt;%</span><span class="st"> </span>sort</code></pre></div>
 </div>
 <div id="get-and-filter-data" class="section level2">
 <h2><a name="get"></a>Get and filter data</h2>
@@ -144,16 +144,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># label all variables and back in a wide style</span>
  
 Mydata &lt;-<span class="st"> </span><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'STI'</span>, <span class="dt">freq =</span> <span class="st">'M'</span>, <span class="dt">ref_area =</span> <span class="st">'ALB'</span>) 
-Mydata %&gt;%<span class="st"> </span><span class="kw">switch_ilo</span>()</code></pre></div>
+Mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">switch_ilo</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># label only indicator</span>
-Mydata %&gt;%<span class="st"> </span><span class="kw">switch_ilo</span>(indicator)</code></pre></div>
+Mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">switch_ilo</span>(indicator)</code></pre></div>
 <p>Function <code>filter_ilo()</code> seach character string inside one variable</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'STI'</span>, <span class="dt">freq =</span> <span class="st">'Q'</span>, <span class="dt">ref_area =</span> <span class="st">'FRA'</span>) %&gt;%<span class="st"> </span><span class="kw">switch_ilo</span>(classif1, indicator) 
-Mydata %&gt;%<span class="st"> </span><span class="kw">filter_ilo</span>(<span class="dt">classif1 =</span> <span class="st">'Aggregate age bands'</span>)
-Mydata %&gt;%<span class="st"> </span><span class="kw">filter_ilo</span>(<span class="dt">indicator =</span> <span class="st">'Unemployment'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'STI'</span>, <span class="dt">freq =</span> <span class="st">'Q'</span>, <span class="dt">ref_area =</span> <span class="st">'FRA'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">switch_ilo</span>(classif1, indicator) 
+Mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter_ilo</span>(<span class="dt">classif1 =</span> <span class="st">'Aggregate age bands'</span>)
+Mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter_ilo</span>(<span class="dt">indicator =</span> <span class="st">'Unemployment'</span>)</code></pre></div>
 <p>Check your data in with html tools (only for small dataset …)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'STI'</span>, <span class="dt">freq =</span> <span class="st">'Q'</span>, <span class="dt">ref_area =</span> <span class="st">'ALB'</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">switch_ilo</span>() %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'STI'</span>, <span class="dt">freq =</span> <span class="st">'Q'</span>, <span class="dt">ref_area =</span> <span class="st">'ALB'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">switch_ilo</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">view_ilo</span>() </code></pre></div>
 </div>
 <div id="advanced-manipulation" class="section level2">
@@ -164,11 +164,11 @@ Mydata %&gt;%<span class="st"> </span><span class="kw">filter_ilo</span>(<span c
 <span class="st">                                    filter(str_sub(time,1,4) &gt; '2013')&quot;</span>, 
                        <span class="dt">collection =</span> <span class="st">'STI'</span>, 
                        <span class="dt">freq =</span> <span class="st">'Q'</span>, 
-                       <span class="dt">package=</span> <span class="st">'stringr'</span>) %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">group_by</span>(ref_area, time, source) %&gt;%
-<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">ungroup</span>() %&gt;%
-<span class="st">        </span><span class="kw">spread</span>(time, n) %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">substr</span>(source,<span class="dv">1</span>,<span class="dv">3</span>) %in%<span class="st"> 'GA:'</span>) 
+                       <span class="dt">package=</span> <span class="st">'stringr'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">group_by</span>(ref_area, time, source) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">spread</span>(time, n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">substr</span>(source,<span class="dv">1</span>,<span class="dv">3</span>) <span class="op">%in%</span><span class="st"> 'GA:'</span>) 
         ,
 <span class="co"># add the ref_area weight from collection = 'ILOEST' indicator %in% EAP_2EAP_NB   </span>
       <span class="kw">get_ilo</span>( <span class="dt">query =</span> <span class="st">&quot;    filter( as.character(time) %in% '2014', </span>
@@ -177,12 +177,12 @@ Mydata %&gt;%<span class="st"> </span><span class="kw">filter_ilo</span>(<span c
 <span class="st">                          classif1 %in% 'AGE_5YRBANDS_TOTAL') %&gt;%</span>
 <span class="st">                                  select(ref_area, obs_value)&quot;</span>, 
                    <span class="dt">collection =</span> <span class="st">'ILOEST'</span>, 
-                   <span class="dt">freq =</span> <span class="st">'A'</span>) %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obs_value =</span> <span class="kw">round</span>(obs_value, <span class="dv">0</span>)) %&gt;%<span class="st"> </span>
+                   <span class="dt">freq =</span> <span class="st">'A'</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obs_value =</span> <span class="kw">round</span>(obs_value, <span class="dv">0</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">      </span><span class="kw">rename</span>(<span class="dt">EAP2014 =</span> obs_value)
-, <span class="dt">by =</span> <span class="st">'ref_area'</span>) %&gt;%<span class="st"> </span>
-<span class="kw">select</span>(ref_area, source, EAP2014, <span class="kw">starts_with</span>(<span class="st">'20'</span>)) %&gt;%
-<span class="kw">arrange</span>(<span class="kw">desc</span>(EAP2014)) %&gt;%<span class="st"> </span><span class="co"># sort by the weight</span>
-<span class="kw">mutate</span>(<span class="dt">iso3 =</span> ref_area) %&gt;%<span class="st"> </span><span class="kw">switch_ilo</span>(ref_area)</code></pre></div>
+, <span class="dt">by =</span> <span class="st">'ref_area'</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="kw">select</span>(ref_area, source, EAP2014, <span class="kw">starts_with</span>(<span class="st">'20'</span>)) <span class="op">%&gt;%</span>
+<span class="kw">arrange</span>(<span class="kw">desc</span>(EAP2014)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sort by the weight</span>
+<span class="kw">mutate</span>(<span class="dt">iso3 =</span> ref_area) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">switch_ilo</span>(ref_area)</code></pre></div>
 </div>
 <div id="save-your-work" class="section level2">
 <h2><a name="save"></a> Save your work</h2>
@@ -221,24 +221,25 @@ Y &lt;-<span class="st"> </span><span class="kw">get_ilo</span>(<span class="dt"
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] ilo_0.1.1        roxygen2_6.0.1   devtools_1.13.0  stringr_1.2.0   
-##  [5] haven_1.0.0.9000 dplyr_0.5.0      purrr_0.2.2.2    readr_1.1.0     
-##  [9] tidyr_0.6.2      tibble_1.3.0     ggplot2_2.2.1    tidyverse_1.1.1 
+## [1] ilo_1.0         ilostat_0.1     roxygen2_6.0.1  devtools_1.13.2
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] reshape2_1.4.2   lattice_0.20-35  colorspace_1.3-2 doSNOW_1.0.14   
-##  [5] htmltools_0.3.6  snow_0.4-2       yaml_2.1.14      foreign_0.8-68  
-##  [9] withr_1.0.2      DBI_0.6-1        rappdirs_0.3.1   modelr_0.1.0    
-## [13] readxl_1.0.0     foreach_1.4.3    plyr_1.8.4       munsell_0.4.3   
-## [17] commonmark_1.2   gtable_0.2.0     cellranger_1.1.0 rvest_0.3.2     
-## [21] evaluate_0.10    codetools_0.2-15 psych_1.7.5      memoise_1.1.0   
-## [25] knitr_1.15.1     forcats_0.2.0    parallel_3.3.3   broom_0.4.2     
-## [29] Rcpp_0.12.10     scales_0.4.1     backports_1.0.5  desc_1.1.0      
-## [33] jsonlite_1.4     mnormt_1.5-5     hms_0.3          digest_0.6.12   
-## [37] stringi_1.1.5    openxlsx_4.0.17  grid_3.3.3       rprojroot_1.2   
-## [41] tools_3.3.3      magrittr_1.5     lazyeval_0.2.0   crayon_1.3.2    
-## [45] xml2_1.1.1       lubridate_1.6.0  rmarkdown_1.5    assertthat_0.2.0
-## [49] httr_1.2.1       iterators_1.0.8  R6_2.2.1         nlme_3.1-131</code></pre>
+##  [1] Rcpp_0.12.11      git2r_0.18.0      plyr_1.8.4       
+##  [4] bindr_0.1         iterators_1.0.8   bitops_1.0-6     
+##  [7] tools_3.3.3       digest_0.6.12     evaluate_0.10    
+## [10] memoise_1.1.0     tibble_1.3.3      doSNOW_1.0.14    
+## [13] pkgconfig_2.0.1   rlang_0.1.1       openxlsx_4.0.17  
+## [16] foreach_1.4.3     commonmark_1.2    yaml_2.1.14      
+## [19] haven_1.0.0       bindrcpp_0.2      withr_1.0.2      
+## [22] dplyr_0.7.1       stringr_1.2.0     xml2_1.1.1       
+## [25] knitr_1.16        rappdirs_0.3.1    desc_1.1.0       
+## [28] htmlwidgets_0.8   hms_0.3           rprojroot_1.2    
+## [31] DT_0.2            glue_1.1.0        data.table_1.10.4
+## [34] R6_2.2.1          snow_0.4-2        rmarkdown_1.6    
+## [37] tidyr_0.6.3       readr_1.1.1       magrittr_1.5     
+## [40] codetools_0.2-15  backports_1.1.0   htmltools_0.3.6  
+## [43] assertthat_0.2.0  stringi_1.1.5     RCurl_1.95-4.8   
+## [46] lazyeval_0.2.0    crayon_1.3.2</code></pre>
 </div>
 </div>
 

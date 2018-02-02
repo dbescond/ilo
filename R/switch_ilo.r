@@ -65,7 +65,7 @@ df %>%
 			separate(., collection, c("collection.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(collection.label 		= 	factor(	collection, exclude = NULL) 	%>%
 								plyr:::mapvalues(  from 	= 	filter(select(ilo$code$cl_indicator_collection, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_indicator_collection, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_indicator_collection, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 									warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -collection) else .}
 	} else .}	%>% {invisible(gc(reset = TRUE)); .} %>%
@@ -73,7 +73,7 @@ df %>%
 			separate(., ref_area, c("ref_area.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(ref_area.label 		= 	factor(	ref_area, exclude = NULL) 	%>%
 								plyr:::mapvalues(  from 	= 	filter(select(ilo$code$cl_country, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_country, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_country, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 									warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -ref_area) else .}
 	}else .}	%>% {invisible(gc(reset = TRUE)); .} %>%
@@ -82,7 +82,7 @@ df %>%
 			separate(., source, c("source.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(source.label 		= 	factor(	source, exclude = NULL) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_survey, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_survey, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_survey, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 									warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -source) else .}
 	} else .}	%>% {invisible(gc(reset = TRUE)); .} %>%
@@ -91,7 +91,7 @@ df %>%
 			separate(., indicator, c("indicator.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(indicator.label 	= 	factor(	indicator, exclude = NULL) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_indicator, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_indicator, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_indicator, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -indicator) else .}
 	} else .}	%>% {invisible(gc(reset = TRUE)); .} %>%
@@ -102,15 +102,15 @@ df %>%
 			separate(classif2, c("classif2.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(sex.label 		= 	factor(sex , exclude = NULL) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				classif1.label	=	factor(classif1 , exclude = NULL)  %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				classif2.label	=	factor(classif2 , exclude = NULL) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -sex,-classif1,-classif2) else .}
 	} else .}	%>% {invisible(gc(reset = TRUE)); .} %>%
@@ -122,21 +122,21 @@ df %>%
 											to 		= 	str_split_fixed(levels(.), fixed('/'), n = 2)[,1] , 
 									warn_missing = FALSE) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				classif1	=	classif %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split_fixed(levels(.), fixed('/'), n = 3)[,2] , 
 									warn_missing = FALSE)%>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				classif2	=	classif %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split_fixed(levels(.), fixed('/'), n = 3)[,3] , 
 									warn_missing = FALSE)%>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_classif, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_classif, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_classif, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE)) %>%
 				select(-classif) %>%
 				{if(style) mutate(., classif = str_c(sex,classif1, classif2, sep = '/')) %>% select(-sex, -classif1, -classif2) else .} 
@@ -148,13 +148,13 @@ df %>%
 			separate(note_source, c("note_source.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
 			mutate(obs_status.label		=	factor(obs_status, exclude = NULL) %>% 
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				note_classif.label	=	factor(note_classif, exclude = NULL) %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist , 
 									warn_missing = FALSE),
@@ -162,7 +162,7 @@ df %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist , 
 									warn_missing = FALSE),
@@ -170,7 +170,7 @@ df %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist ,  
 									warn_missing = FALSE)) %>%
@@ -185,7 +185,7 @@ df %>%
 											to 		= 	str_split_fixed(levels(.), fixed('/'), n = 2)[,1] , 
 									warn_missing = FALSE) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				note_classif	=	note %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
@@ -194,7 +194,7 @@ df %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist , 
 									warn_missing = FALSE),
@@ -205,7 +205,7 @@ df %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist , 
 									warn_missing = FALSE),
@@ -216,7 +216,7 @@ df %>%
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split(levels(.),fixed('_')) %>% llply(function(x){
 																x %>% 	plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_note, code), code %in% levels(as.factor(.))) %>% t %>% as.character, 
-																					to 		= 	filter(select(ilo$code$cl_note, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
+																					to 		= 	filter(select_(ilo$code$cl_note, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(as.factor(.))) %>% select(label) %>% t %>% as.character, 
 																		warn_missing = FALSE) %>%
 																		str_c(., collapse = ' | ')})  %>% unlist , 
 									warn_missing = FALSE)) %>%
@@ -231,14 +231,14 @@ df %>%
 											to 		= 	str_split_fixed(levels(.), fixed(':'), n = 2)[,1] , 
 									warn_missing = FALSE) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_z, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_z, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_z, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE),
 				info_loadmode	=	info %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split_fixed(levels(.), fixed(':'), n = 3)[,2] , 
 									warn_missing = FALSE)%>% 
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_z, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_z, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_z, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE) , 
 				info_lastcheckdate	=	info %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
@@ -249,21 +249,21 @@ df %>%
 											to 		= 	str_split_fixed(levels(.), fixed(':'), n = 5)[,4] , 
 									warn_missing = FALSE) %>% 
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_z, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_z, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_z, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE) , 
 				info_checkuser	=	info %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split_fixed(levels(.), fixed(':'), n = 6)[,5] , 
 									warn_missing = FALSE) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_z, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_z, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_z, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE) , 
 				info_channel	=	info %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 
 											to 		= 	str_split_fixed(levels(.), fixed(':'), n = 7)[,6] , 
 									warn_missing = FALSE) %>%
 								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_z, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select(ilo$code$cl_z, code, label = eval(parse(text=paste0('label_',ilo$lang)))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_z, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 										warn_missing = FALSE) ,
 				info_web	=	info %>% 
 								plyr:::mapvalues( 	from 	= 	levels(.), 

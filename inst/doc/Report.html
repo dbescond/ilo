@@ -12,7 +12,7 @@
 
 <meta name="author" content="David Bescond" />
 
-<meta name="date" content="2017-05-15" />
+<meta name="date" content="2017-07-05" />
 
 <title>Report</title>
 
@@ -70,14 +70,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Report</h1>
 <h4 class="author"><em>David Bescond</em></h4>
-<h4 class="date"><em>2017-05-15</em></h4>
+<h4 class="date"><em>2017-07-05</em></h4>
 
 
 
 <div id="indicator" class="section level1">
 <h1>Indicator</h1>
 <p>get summary of indicator by mode (COLlecte, CALlculate, Total)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'YI'</span>, info) %&gt;%<span class="st"> </span><span class="kw">count</span>(indicator, <span class="dt">mode =</span> <span class="kw">substr</span>(info,<span class="dv">5</span>,<span class="dv">7</span>)) %&gt;%<span class="st"> </span><span class="kw">spread</span>(mode, n) %&gt;%<span class="st"> </span><span class="kw">ungroup</span>() %&gt;%<span class="kw">mutate</span>(<span class="dt">TOT =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span>:<span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_ilo</span>(<span class="dt">collection =</span> <span class="st">'YI'</span>, info) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(indicator, <span class="dt">mode =</span> <span class="kw">substr</span>(info,<span class="dv">5</span>,<span class="dv">7</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(mode, n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="kw">mutate</span>(<span class="dt">TOT =</span> <span class="kw">rowSums</span>(.[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
 </div>
 
 

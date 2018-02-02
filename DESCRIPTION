@@ -8,9 +8,24 @@ Description: Tools to download data from 'ILO' Statistics Department Database
     http://www.ilo.org/ilostat/ together with search and manipulation utilities.
 License: MIT + file LICENSE
     Depends:
-    R (>= 3.3)
+    R (>= 3.2)
+Imports:
+    dplyr,
+    stringr
+Suggests:
+    dplyr,
+    Cairo,
+    ggplot2,
+    knitr,
+    mapproj,
+    plotrix,
+    rmarkdown,
+    roxygen2,
+    rsdmx,
+    rvest,
+    testthat
 LazyData: true
-URL: https://github.com/dbescond/ilo
+URL: https://ropengov.github.io/ilostat
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN

@@ -116,7 +116,7 @@ if(type %in% c('csv', 'del', 'delete')){
 			colnames(refDELETE) <- refDELETE[1,]
 			refDELETE <- refDELETE %>% slice(-1)
 			ref  <-	refDELETE %>% 
-					bind_rows(	ref %>% 
+					bind_rows(	ref %>% mutate(time = as.character(time)) %>% 
 								select(collection:time) %>% 
 								switch_ilo(version) %>% select(-sex, -classif1, -classif2) 
 							) %>% 
@@ -124,7 +124,7 @@ if(type %in% c('csv', 'del', 'delete')){
 					distinct_(.dots = refcol, .keep_all = TRUE)
 		}
 		
-		data.table:::fwrite(ref, tfile)
+		data.table:::fwrite(ref, tfile, na = '')
 		
 		} 
 
@@ -144,7 +144,7 @@ if(type %in% c('rev','revision')){
 		writeData(wb, sheet = 1, ref %>% as.data.frame)
 		
 		ref  <-	ref %>% select_(.dots = c('collection', 'ref_area', 'source', 'indicator', 'sex', 'classif1', 'classif2',  'time')) %>%
-								select(collection:time) %>% 
+								select(collection:time) %>% mutate(time = as.character(time) ) %>% 
 								switch_ilo(version) %>% select(-sex, -classif1, -classif2) %>% 
 					mutate(classif1_version = gsub('NOC_VALUE', 'NOC', classif1_version)) %>%
 					distinct_(.dots = c('collection', 'ref_area', 'source', 'indicator', 'sex_version', 'classif1_version', 'classif2_version',  'time'), .keep_all = TRUE)
