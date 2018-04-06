@@ -23,11 +23,11 @@
 #' @return a tbl data frame
 #'
 #' @examples
-#' ## Not run:
+#' \dontrun{
 #' res <- get_ilo(ref_area = 'AFG')
 #'
 #' res %>% filter_ilo(note_source = 'T3')
-#' ## End(**Not run**)
+#' }
 #' @export
 
 filter_ilo <- function(df, ...){

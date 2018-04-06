@@ -51,7 +51,7 @@ To learn more about ilo, start with the online vignettes:
 }
 
 \examples{
-
+\dontrun{
 init_ilo()
 
 
@@ -74,5 +74,5 @@ get_ilo(info = 'COL')
 ### Working with label
 
 get_ilo(label, ref_area = 'AFG', source = 'Census', indicator = 'population')
-
+}
 }

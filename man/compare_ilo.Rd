@@ -39,7 +39,9 @@ To learn more about ilo, start with the online vignettes:
 }
 
 \examples{
+\dontrun{
 res <- get_ilo(ref_area = 'AFG')
 
 res \%>\% filter_ilo(note_source = 'T3')
+}
 }

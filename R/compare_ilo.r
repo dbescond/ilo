@@ -31,10 +31,11 @@
 #' @return a tbl data frame
 #'
 #' @examples
+#' \dontrun{
 #' res <- get_ilo(ref_area = 'AFG')
 #'
 #' res %>% filter_ilo(note_source = 'T3')
-
+#' }
 #' @export
 
 compare_ilo <- function(df, ...	){

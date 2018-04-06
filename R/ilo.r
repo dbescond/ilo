@@ -27,9 +27,10 @@
 #' @importFrom stringr str_replace_all str_detect str_split_fixed fixed str_c str_split str_replace
 #'
 #' @examples
+#' \dontrun{
 #' init_ilo()
 #' get_ilo(ref_area = 'AFG')
-#'
+#' }
 rnm <- function(x) {
 	paste0(	gsub('_' , ' ', tolower(x), fixed = TRUE) %>% 
 			gsub('\\b(\\w)'	, '\\U\\1', ., perl=TRUE) %>%	 
@@ -39,7 +40,7 @@ rnm <- function(x) {
 
 path_for_ilo <- function(){ 
 
-	if(dir.exists('J:/COMMON/STATISTICS/DPAU/TOOLS/R/data/')) return('J:\\COMMON\\STATISTICS\\DPAU\\TOOLS\\R\\data')
+	if(dir.exists(paste0(ilo:::path$tools, 'R/data/'))) return(paste0(ilo:::path$tools,'R/data'))
 	else	rappdirs::user_data_dir(appauthor = 'ILO')
 
 }

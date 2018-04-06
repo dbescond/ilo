@@ -42,11 +42,12 @@ To learn more about ilo, start with the online vignettes:
 }
 
 \examples{
-## Not run:
+\dontrun{
 res <- get_ilo(ref_area = 'AFG')
 
 res \%>\% filter_ilo(note_source = 'T3')
-## End(**Not run**)
+}
+\dontrun{
 init_ilo()
 
 ilo
@@ -54,4 +55,5 @@ ilo \%>\% names
 ilo$lastupdate
 ilo$code \%>\% names
 ilo$code$cl_country
+}
 }
