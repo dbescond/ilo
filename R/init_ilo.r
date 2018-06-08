@@ -26,7 +26,6 @@
 #' @return ilo an R environment that contains cluster and codelist
 #'
 #' @examples
-#' \dontrun{
 #' init_ilo()
 #'
 #' ilo
@@ -34,7 +33,6 @@
 #' ilo$lastupdate
 #' ilo$code %>% names
 #' ilo$code$cl_country
-#' }
 #' @export
 
 init_ilo <- function(...){

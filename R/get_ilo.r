@@ -49,7 +49,7 @@
 #' @return a tbl data frame
 #'
 #' @examples
-#' \dontrun{
+#'
 #' init_ilo()
 #'
 #'
@@ -72,7 +72,7 @@
 #' ### Working with label
 #'
 #' get_ilo(label, ref_area = 'AFG', source = 'Census', indicator = 'population')
-#' }
+#'
 #' @export
 get_ilo <- function(...){
 
@@ -157,6 +157,7 @@ invisible(gc(reset = TRUE))
 		}
 	}
 
+	if(freq %in% c('Q', 'M') & collection %in% c(NULL, 'YI')) {collection <- 'STI'}
 	set$Q3 <- keep; set$keep <- NULL
 	set$query <- query ; rm(query) 
 	if(!is.null(indicator)) { set$indicator <- paste0("filter(stringr::str_detect(indicator, '",indicator,"'))")} else set$indicator <- indicator; rm(indicator)
@@ -171,7 +172,10 @@ invisible(gc(reset = TRUE))
 	if(!is.null(obs_status)) { set$obs_status <- paste0("filter(stringr::str_detect(obs_status, '",obs_status,"'))")} else set$obs_status <- obs_status; rm(obs_status)
 	if(!is.null(note_classif)) { set$note_classif <- paste0("filter(stringr::str_detect(note_classif, '",note_classif,"'))")} else set$note_classif <- note_classif; rm(note_classif)
 	if(!is.null(note_indicator)) { set$note_indicator <- paste0("filter(stringr::str_detect(note_indicator, '",note_indicator,"'))")} else set$note_indicator <- note_indicator; rm(note_indicator)
-	if(!is.null(note_source)) { set$note_source <- paste0("filter(stringr::str_detect(note_source, '",note_source,"'))")} else set$note_source <- note_source; rm(note_source)
+	
+	if(!is.null(note_source) ) {if(!stringr:::str_detect(note_source, '!')) {set$note_source <- paste0("filter(stringr::str_detect(note_source, '",note_source,"'))")}} else set$note_source <- note_source
+	if(!is.null(note_source) ) {if(stringr:::str_detect(note_source, '!')) { note_source <- stringr:::str_replace(note_source, '!', '') ; set$note_source <- paste0("filter(!stringr::str_detect(note_source, '",note_source,"') | note_source %in% NA)")}} else set$note_source <- note_source; rm(note_source)
+	
 	if(set$web){set$web <- "filter(stringr:::str_sub(info,-1,-1) %in% '1') %>% mutate(note_indicator = discard_note(., 'ind'), note_source = discard_note(., 'src'))"} else(set$web <- NULL)
 	
 	if(!is.null(ref_area)) {if(unique(ref_area %in% 'all') %in% TRUE) ref_area <- NULL}
@@ -374,7 +378,7 @@ return(X %>% select(note_source) %>% t %>% as.character)
 }
 
 #' @export
-get_ilo_my_test <- function(...){
+get_ilo2 <- function(...){
 
 invisible(gc(reset = TRUE))
 invisible(gc(reset = TRUE))

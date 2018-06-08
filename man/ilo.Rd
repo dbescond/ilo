@@ -26,8 +26,7 @@ To learn more about ilo, start with the online vignettes:
 \code{help_ilo()}
 }
 \examples{
-\dontrun{
 init_ilo()
 get_ilo(ref_area = 'AFG')
-}
+
 }

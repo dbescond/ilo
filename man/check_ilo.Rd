@@ -31,9 +31,9 @@ others functions allow advanced manipulation.
 }
 
 \examples{
-\dontrun{
+## Not run:
 
-}
+## End(**Not run**)
 }
 \author{
 ILO / bescond

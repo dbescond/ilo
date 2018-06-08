@@ -16,7 +16,7 @@ pivot html table
 R tools to visualyze pivot ilo data frame
 }
 \examples{
-\dontrun{
+## Not run:
 
 init_ilo()
 
@@ -25,5 +25,5 @@ init_ilo()
 
 X <- get_ilo(ref_area = 'AFG')
 pivot_ilo(X)
-}
+## End(**Not run**)
 }

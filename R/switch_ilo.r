@@ -26,7 +26,6 @@
 #' @return a tbl data frame
 #'
 #' @examples
-#' \dontrun{
 #' ### quarterly female unemployed as from 2000 in united states
 #'
 #' res <-  get_ilo(collection = 'STI', 
@@ -42,7 +41,7 @@
 #' ### get label of collection and contry only (don't keep code)
 #'
 #' res %>% switch_ilo(collection, ref_area)
-#' }
+#'
 #' @export
 
 switch_ilo <- function(df, ...){

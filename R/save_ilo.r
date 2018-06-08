@@ -31,7 +31,7 @@
 #' @return external file open in temp workspace
 #'
 #' @examples
-#' \dontrun{
+#' ## Not run:
 #' ### quarterly female unemployed as from 2000 in united states
 #'
 #' res <-  get_ilo(collection = 'STI', 
@@ -52,7 +52,7 @@
 #'
 #' save_ilo(res , path = 'D:/test.csv')
 #'
-#' }
+#' ## End(**Not run**)
 #' @export
 
 save_ilo <- function(...){

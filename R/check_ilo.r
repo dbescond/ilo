@@ -17,9 +17,9 @@
 #' @author ILO / bescond  
 #' @keywords ILO, microdataset, preprocessing
 #' @examples
-#' \dontrun{
+#' ## Not run:
 #'
-#' }
+#' ## End(**Not run**)
 
 #' @export
 

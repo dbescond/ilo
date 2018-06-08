@@ -10,7 +10,7 @@
 #' @return pivot html table
 #'
 #' @examples
-#' \dontrun{
+#' ## Not run:
 #'
 #' init_ilo()
 #'
@@ -19,7 +19,7 @@
 #'
 #' X <- get_ilo(ref_area = 'AFG')
 #' pivot_ilo(X)
-#' }
+#' ## End(**Not run**)
 #' @export
 pivot_ilo <- function(df)
 {
