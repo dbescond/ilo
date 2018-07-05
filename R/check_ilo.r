@@ -59,7 +59,7 @@ if(str_detect(variable, '/version/')){
 
 
 	ilo:::init_ilo(-cl)
-	ref_config <- ilo$code$cl_col_ind_clv %>% filter(collection %in% unique(df$collection), indicator %in% unique(df$indicator))
+	ref_config <- ilo$code$cl_col_ind_clv %>% filter(collection %in% unique('YI'), indicator %in% unique(df$indicator))
 	
 if(str_detect(variable, '/xQ/')){	
 # add segmentation collected, xQ, dissem
@@ -85,7 +85,7 @@ df <- 	df %>%
 if(str_detect(variable, '/indicator/')){	
 
 ilo:::init_ilo(-cl)
-	ref_config <- ilo$code$cl_col_ind_clv %>% filter(collection %in% unique(df$collection), indicator %in% unique(df$indicator)) %>% select(indicator)
+	ref_config <- ilo$code$cl_col_ind_clv %>% filter(collection %in% unique('YI'), indicator %in% unique(df$indicator)) %>% select(indicator)
 
 df <- 	df %>% mutate(check = ifelse(indicator %in% ref_config$indicator, TRUE, FALSE))
 
