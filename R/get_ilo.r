@@ -127,8 +127,17 @@ invisible(gc(reset = TRUE))
 
 	set$TS <- ifelse(style %in% 'ts', TRUE, FALSE)
 
-	if(collection %in% 'all') 	collection <- ilo$segment %>% distinct(collection) %>% t %>% as.character
-	if(freq %in% 'all') 		freq <- ilo$segment %>% distinct(freq) %>% t %>% as.character
+	if(collection %in% 'all') 	{collection <- ilo$segment %>% distinct(collection) %>% t %>% as.character} else {
+		if(freq %in% c('Q', 'M') & collection %in% c(NULL, 'YI')) {collection <- 'STI'}
+		}
+	if(freq %in% 'all') {	
+			freq <- ilo$segment %>% distinct(freq) %>% t %>% as.character
+			if(is.null(query)){
+					query = 'mutate(time = as.character(time))'
+			} else {
+					query = paste0(' mutate(time = as.character(time)) %>% ', query)
+			}
+	}
 	keep = NULL
 	set$info <- FALSE
 	set$label <- FALSE
@@ -157,7 +166,7 @@ invisible(gc(reset = TRUE))
 		}
 	}
 
-	if(freq %in% c('Q', 'M') & collection %in% c(NULL, 'YI')) {collection <- 'STI'}
+
 	set$Q3 <- keep; set$keep <- NULL
 	set$query <- query ; rm(query) 
 	if(!is.null(indicator)) { set$indicator <- paste0("filter(stringr::str_detect(indicator, '",indicator,"'))")} else set$indicator <- indicator; rm(indicator)

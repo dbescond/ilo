@@ -29,4 +29,4 @@ URL: https://ropengov.github.io/ilostat
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
