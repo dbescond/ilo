@@ -80,9 +80,9 @@ df %>%
 
 {if(str_detect(variable, '/source/')){	
 			separate(., source, c("source.label"), sep=" ", extra = "drop", remove = FALSE)  %>%
-			mutate(source.label 		= 	factor(	source, exclude = NULL) %>%
-								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_survey, code), code %in% levels(.)) %>% t %>% as.character, 
-											to 		= 	filter(select_(ilo$code$cl_survey, .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
+			mutate(source.label 		= 	factor(as.character(readr::parse_number(source)), exclude = NULL) %>%
+								plyr:::mapvalues(	from 	= 	filter(select(ilo$code$cl_survey %>% mutate(code = as.character(readr::parse_number(code))), code), code %in% levels(.)) %>% t %>% as.character, 
+											to 		= 	filter(select_(ilo$code$cl_survey %>% mutate(code = as.character(readr::parse_number(code))), .dots = c('code', label = paste0('label_',ilo$lang))), code %in% levels(.)) %>% select(label) %>% t %>% as.character, 
 									warn_missing = FALSE)) %>% 
 		{if(!str_detect(variable, '/keep/')) select(., -source) else .}
 	} else .}	%>% {invisible(gc(reset = TRUE)); .} %>%

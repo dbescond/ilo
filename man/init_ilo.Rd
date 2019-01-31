@@ -3,7 +3,6 @@
 \name{init_ilo}
 \alias{init_ilo}
 \alias{filter_ilo}
-\alias{init_ilo}
 \title{R tools to manipulate ilo datasets code / label}
 \usage{
 filter_ilo(df, ...)

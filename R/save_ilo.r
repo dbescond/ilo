@@ -112,7 +112,7 @@ if(type %in% c('csv', 'del', 'delete')){
 		
 		if(type %in% c('del', 'delete')){
 			refcol 	<- c('collection', 'ref_area', 'source', 'indicator', 'sex_version', 'classif1_version', 'classif2_version',  'time')
-			refDELETE <- as_data_frame(t(refcol))
+			refDELETE <- as_tibble(t(refcol))
 			colnames(refDELETE) <- refDELETE[1,]
 			refDELETE <- refDELETE %>% slice(-1)
 			ref  <-	refDELETE %>% 

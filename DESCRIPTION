@@ -1,6 +1,6 @@
 Package: ilo
 Title: Tools for 'ILO' Open Data manipulation
-Version: 1.0
+Version: 1.2
 Date: 2017-05-15
 Authors@R: person("Bescond", "David", email = "bescond@ilo.org", role = c("aut", "cre"))
 BugReports: https://github.com/dbescond/ilo/issues
@@ -19,8 +19,6 @@ Suggests:
     knitr,
     mapproj,
     plotrix,
-    rmarkdown,
-    roxygen2,
     rsdmx,
     rvest,
     testthat
@@ -29,4 +27,4 @@ URL: https://ropengov.github.io/ilostat
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
