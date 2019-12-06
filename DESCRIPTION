@@ -6,25 +6,7 @@ Authors@R: person("Bescond", "David", email = "bescond@ilo.org", role = c("aut",
 BugReports: https://github.com/dbescond/ilo/issues
 Description: Tools to download data from 'ILO' Statistics Department Database
     http://www.ilo.org/ilostat/ together with search and manipulation utilities.
-License: MIT + file LICENSE
-    Depends:
-    R (>= 3.2)
-Imports:
-    dplyr,
-    stringr
-Suggests:
-    dplyr,
-    Cairo,
-    ggplot2,
-    knitr,
-    mapproj,
-    plotrix,
-    rsdmx,
-    rvest,
-    testthat
-LazyData: true
-URL: https://ropengov.github.io/ilostat
-VignetteBuilder: knitr
-NeedsCompilation: no
-Repository: CRAN
+Depends: 
+    R (>= 3.6.1)
+License: MIT
 RoxygenNote: 6.1.1
